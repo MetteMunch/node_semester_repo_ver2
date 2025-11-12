@@ -5,9 +5,11 @@ const router = Router();
 /* 
     Authentication: Trying to establish identity. 
         E.g. A login where a user uses a username and password to authenticate themselves
+        Må du logge ind her (korrekt user og password)
 
-    Ahtorhizataion: Trying to establish if the user is allowed to access the resources.
+    Auhtorhizataion: Trying to establish if the user is allowed to access the resources.
         E.g. Only an admin user is allowed to access the route. We need to check if they are admin or not.
+        Hvad har du så adgang til (rettigheder)
 */
 
 function isAdmin(req, res, next) {

@@ -1,6 +1,4 @@
-// import dotenv from 'dotenv';
-// dotenv.config();
-import 'dotenv/config';
+import 'dotenv/config'; //gør det muligt at loade miljøvariable fra .env fil
 
 import express from 'express';
 const app = express();
@@ -9,10 +7,10 @@ const app = express();
 import session from 'express-session';
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
+    secret: process.env.SESSION_SECRET, //henter secret fra .env og bruges til at signere cookie-ID'et
+    resave: false, //sessionen skal ikke gemmes igen, hvis den ikke ændres
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: false } //false er ok lokalt men i produktion skal overvejes true (tjek ud)
 }));
 
 import helmet from 'helmet';
@@ -38,7 +36,7 @@ const authLimiter = rateLimit({
     standardHeaders: 'draft-8',
     legacyHeaders: false
 });
-
+//Strammere limit på ruter under /auth (hver IP har 3 kald indenfor 15 min)
 app.use("/auth", authLimiter);
 
 
@@ -52,7 +50,7 @@ import middlewareRouter from './routers/middlewareRouter.js';
 app.use(middlewareRouter);
 
 
-
+//Nedenstående er til at fange, hvis der er en route der kaldes, men ikke findes
 // New syntax in Express 5.x. Previously just "/*"
 app.get("/{*splat}", (req, res) => {
     res.send(`<h1>404</h1><h3>Didn't find a matching route</h3>`);
@@ -62,7 +60,10 @@ app.all("/{*splat}", (req, res) => {
     res.status(404).send({ data: "Didn't match with a route" });
 });
 
-const PORT = 8080 || process.env.PORT;
+
+
+const PORT = process.env.PORT || 8080;
+//const PORT = 8080 || process.env.PORT;
 
 const server = app.listen(PORT, () => {
     console.log("Server is running on port", server.address().port);
