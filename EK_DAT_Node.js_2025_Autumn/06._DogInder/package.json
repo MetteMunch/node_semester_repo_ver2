@@ -1,0 +1,27 @@
+{
+  "name": "doginder",
+  "version": "0.0.1",
+  "description": "A Tinder for Indian dogs",
+  "keywords": [
+    "Tinder",
+    "dogs",
+    "Indian",
+    "love",
+    "romance"
+  ],
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "cross-env PORT=9090 nodemon app.js",
+    "prod": "node app.js"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.0.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
+  }
+}
