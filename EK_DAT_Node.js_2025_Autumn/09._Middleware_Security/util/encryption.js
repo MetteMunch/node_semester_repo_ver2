@@ -4,7 +4,7 @@ const password = "hunter123";
 const saltRounds = 14;
 
 
-// /register /forgotpassword
+// /register / forgotpassword
 const hashedPassword = await bcrypt.hash(password, saltRounds);
 //console.log(hashedPassword);
 
