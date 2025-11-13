@@ -4,6 +4,9 @@ const app = express();
 
 app.use(express.json());
 
+import cors from 'cors';
+app.use(cors()); //her må alle tilgå serveren
+
 import session from 'express-session';
 
 app.use(session({
@@ -21,4 +24,5 @@ app.use(housesRouter);
 
 
 const PORT = Number(process.env.PORT) || 8080;
+console.log(process.env.PORT);
 app.listen(PORT, () => console.log("Server is running on port", PORT));
